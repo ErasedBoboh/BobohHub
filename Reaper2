@@ -1,9 +1,9 @@
 repeat wait() until game:IsLoaded()
 
-if game.PlaceId == 12548209 and game:GetService("Workspace"):FindFirstChild("Map") then
+if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("Map") then
     local LocalPlayer = game:GetService("Players").LocalPlayer
-    local Autofarm = false
-    local Autoquest = false
+    getgenv().Autofarm = false
+    getgenv().AutoQuest = false
     local Target = nil
 
     local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
@@ -19,69 +19,140 @@ if game.PlaceId == 12548209 and game:GetService("Workspace"):FindFirstChild("Map
     local Sector = Category:Sector("Autofarm")
 
     Sector:Cheat(
-	"Checkbox",
-	"Enabled",
-	function(Value)
-        
-	end)
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            getgenv().Autofarm = Value
 
-    Sector:Cheat(
-	"Checkbox",
-	"Auto Quest",
-	function(Value)
-        Autoquest = Value
-	end)
-
-    game.CoreGui:WaitForChild("FinityUI")
-
-    game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
-else
-    local LocalPlayer = game:GetService("Players").LocalPlayer
-    local Autofarm = false
-    local Target = nil
-
-    local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
-
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-
-    local UI = Loader.new(true)
-    UI.ChangeToggleKey(Enum.KeyCode.RightControl)
-
-    local Category = UI:Category("General")
-
-    local Sector = Category:Sector("Autofarm")
-
-    Sector:Cheat(
-	"Checkbox",
-	"Enabled",
-	function(Value)
-        Autofarm = Value
-
-        if Value then
-            for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
-                if v.Name ~= LocalPlayer.Name then
-                    Target = v
+            if Value then
+                for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                    if Target == nil and v.Name == "Adjucha" then
+                        Target = v
+                    end
                 end
-            end
-        else
-            Target = nil
-        end
-	end)
-
-    while wait() do
-        if Autofarm and Target ~= nil and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Humanoid") then
-            if Target.Humanoid.Health ~= 0 then
-                LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame * CFrame.new(0, 0, 7.5)
-
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, Autofarm, workspace, 0)
             else
                 Target = nil
+            end
+	    end
+	)
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Auto Quest",
+	    function(Value)
+            getgenv().AutoQuest = Value
+	    end
+	)
+    
+    Sector:Cheat("Button", "Go to the throne", function()
+	    
+    end)
+
+    Sector:Cheat("Button", "Talk to 123imnotmomoh", function()
+	    
+    end)
+
+    function NewTarget()
+        if getgenv().AutoFarm then
+            for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                if Target == nil and v.Name == "Adjucha" then
+                     Target = v
+                end
             end
         end
     end
 
-    game.CoreGui:WaitForChild("FinityUI")
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Humanoid") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            if Target.Humanoid.Health ~= 0 then
+                if LocalPlayer.Status.Weapon.Value == nil then
+                    local args = {
+                        [1] = {
+                            ["inputType"] = Enum.UserInputType.Keyboard,
+                            ["keyCode"] = Enum.KeyCode.E
+                        }
+                    }
+    
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+                end
+
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
+
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, getgenv().Autofarm, workspace, 0)
+            else
+                Target = nil
+
+                NewTarget()
+            end
+        end
+
+        if getgenv().AutoQuest then
+            local args = {
+                [1] = "Adjucha's need a nerf.",
+                [2] = workspace.NPCs.Actual6_Garbage9
+            }
+
+            game:GetService("ReplicatedStorage").Remotes.TakeQuest:FireServer(unpack(args))
+        end
+    end)
+
+    game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
+else
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    getgenv().Autofarm = false
+    local Target = nil
+
+    local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
+
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+
+    local UI = Loader.new(true)
+    UI.ChangeToggleKey(Enum.KeyCode.RightControl)
+
+    local Category = UI:Category("General")
+
+    local Sector = Category:Sector("Autofarm")
+
+    Sector:Cheat(
+	    "Checkbox",
+	    "Enabled",
+        function(Value)
+            getgenv().Autofarm = Value
+
+            if Value then
+                for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                    if v.Name ~= LocalPlayer.Name then
+                        Target = v
+                    end
+                end
+            else
+                Target = nil
+            end
+        end)
+
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Humanoid") and LocalPlayer.Character then
+            if Target.Humanoid.Health ~= 0 then
+                if LocalPlayer.Status.Weapon.Value == nil then
+                    local args = {
+                        [1] = {
+                            ["inputType"] = Enum.UserInputType.Keyboard,
+                            ["keyCode"] = Enum.KeyCode.E
+                        }
+                    }
+    
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+                end
+
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
+
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, getgenv().Autofarm, workspace, 0)
+            else
+                Target = nil
+            end
+        end
+    end)
 
     game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
 end
