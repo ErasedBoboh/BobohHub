@@ -1,6 +1,6 @@
 repeat wait() until game:IsLoaded()
 
-if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("Map") then
+if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("Map") and game:GetService("Workspace").Map:FindFirstChild("HellDoor") then
     local LocalPlayer = game:GetService("Players").LocalPlayer
     getgenv().Autofarm = false
     getgenv().Quest = nil
@@ -168,7 +168,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     game:GetService("RunService").Heartbeat:Connect(function()
         if getgenv().Autofarm and getgenv().Quest ~= nil and LocalPlayer.Character then
-            if Target:FindFirstChild("Humanoid") then
+            if Target:FindFirstChild("Humanoid") and Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -177,6 +177,17 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                         }
                     }
     
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+                end
+
+                if Target.Status.Blocking.Value == true then
+                    local args = {
+                        [1] = {
+                            ["inputType"] = Enum.UserInputType.Keyboard,
+                            ["keyCode"] = Enum.KeyCode.R
+                        }
+                    }
+
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
@@ -250,7 +261,7 @@ else
 
     game:GetService("RunService").Heartbeat:Connect(function()
         if getgenv().Autofarm and Target ~= nil and LocalPlayer.Character then
-            if Target:FindFirstChild("Humanoid") then
+            if Target:FindFirstChild("Humanoid") and Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -259,6 +270,17 @@ else
                         }
                     }
     
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+                end
+
+                if Target.Status.Blocking.Value == true then
+                    local args = {
+                        [1] = {
+                            ["inputType"] = Enum.UserInputType.Keyboard,
+                            ["keyCode"] = Enum.KeyCode.R
+                        }
+                    }
+
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
