@@ -33,6 +33,12 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                         Target = v
                     elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
                         Target = v
+                    elseif getgenv().Quest == "Enhanced Arrancar" and v.Name == "Enhanced Arrancar" then
+                        Target = v
+                    elseif getgenv().Quest == "Flaming Hollow" and v.Name == "Flaming Hollow" then
+                        Target = v
+                    elseif getgenv().Quest == "Hollow" and v.Name == "Hollow" then
+                        Target = v
                     end
                 end
             else
@@ -43,7 +49,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     Sector:Cheat("Dropdown", "Quest", function(Value)
         getgenv().Quest = Value
-	end, {options = {"None", "Adjucha", "Vasto Lorde"}})
+	end, {options = {"None", "Adjucha", "Vasto Lorde", "Enhanced Arrancar", "Flaming Hollow", "Hollow"}})
 
     Sector:Cheat(
     	"Checkbox",
@@ -60,6 +66,12 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                     Target = v
                 elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
                     Target = v
+                elseif getgenv().Quest == "Enhanced Arrancar" and v.Name == "Enhanced Arrancar" then
+                    Target = v
+                elseif getgenv().Quest == "Flaming Hollow" and v.Name == "Flaming Hollow" then
+                    Target = v
+                elseif getgenv().Quest == "Hollow" and v.Name == "Hollow" then
+                    Target = v
                 end
             end
         end
@@ -74,7 +86,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
         game:GetService("ReplicatedStorage").Remotes.TakeQuest:FireServer(unpack(args))
     end
     
-    Sector:Cheat("Button", "Go to the throne", function()
+    Sector:Cheat("Button", "UXgravity", function()
 	    Quest("Pay your respects", "UXgravity")
 
         local args = {
@@ -84,28 +96,42 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
     end)
 
-    Sector:Cheat("Button", "Talk to 123imnotmomoh", function()
+    Sector:Cheat("Button", "Jobikonbi22", function()
         Quest("Reconnaissance", "Jobikonbi22")
 
         fireclickdetector(game.Workspace.NPCs["123imnotmomoh"].ClickDetector, 0)
         fireclickdetector(game.Workspace.NPCs["123imnotmomoh"].ClickDetector, 1)
     end)
 
-    Sector:Cheat("Button", "The Dogg Race", function()
+    Sector:Cheat("Button", "DoggWithDaButter", function()
         Quest("The Dogg Race", "DoggWithDaButter")
 
         LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577, 4, 1643)
     end)
 
-    Sector:Cheat("Button", "", function()
+    Sector:Cheat("Button", "IAlreadyTouchedYou", function()
         Quest("Bag of Donuts Delivery", "IAlreadyTouchedYou")
 
         fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 0)
         fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 1)
     end)
 
+    Sector:Cheat("Button", "Kyogoto", function()
+        Quest("Finding the Lost Child", "Kyogoto")
+
+        game:GetService("Workspace").SpawnedNPCs:WaitForChild("Lost Child")
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnedNPCs["Lost Child"].HumanoidRootPart.CFrame
+
+        wait(1)
+
+        fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["Lost Child"].ProximityPrompt, 0)
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.Kyogoto.HumanoidRootPart.CFrame
+    end)
+
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target:FindFirstChild("Humanoid") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health > 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -133,6 +159,18 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                 Quest("Adjucha's need a nerf.", "Actual6_Garbage9")
             elseif getgenv().Quest == "Vasto Lorde" then
                 Quest("Vasto Lorde Massacre", "SnakeWorl")
+            elseif getgenv().Quest == "Enhanced Arrancar" then
+                Quest("Enhanced Arrancar Slayer", "N4tsk")
+            elseif getgenv().Quest == "Flaming Hollow" then
+                Quest("Expedition", "GQuake")
+
+                local args = {
+                    [1] = "Magma Cavern"
+                }
+
+                game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
+            elseif getgenv().Quest == "Hollow" then
+                Quest("Speedy Hollow Massacre", "lazarovip2")
             end
         end
     end)
@@ -173,7 +211,7 @@ else
         end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health > 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
