@@ -41,7 +41,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     Sector:Cheat("Dropdown", "Quest", function(Value)
         getgenv().Quest = Value
-	end, {options = {"Adjucha", "Vasto Lorde"}})
+	end, {options = {"None", "Adjucha", "Vasto Lorde"}})
 
     Sector:Cheat(
     	"Checkbox",
