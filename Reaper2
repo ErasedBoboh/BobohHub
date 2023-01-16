@@ -62,6 +62,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                         Target = v
                     elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
                         Target = v
+                    elseif getgenv().Quest == "Perfect Arrancar" and v.Name == "Perfect Arrancar" then
+                        Target = v
                     elseif getgenv().Quest == "Enhanced Arrancar" and v.Name == "Enhanced Arrancar" then
                         Target = v
                     elseif getgenv().Quest == "Flaming Hollow" and v.Name == "Flaming Hollow" then
@@ -80,7 +82,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     Sector:Cheat("Dropdown", "Quest", function(Value)
         getgenv().Quest = Value
-	end, {options = {"None", "Adjucha", "Vasto Lorde", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Menos"}})
+	end, {options = {"None", "Adjucha", "Vasto Lorde", "Perfect Arrancar", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Menos"}})
 
     Sector:Cheat(
     	"Checkbox",
@@ -166,9 +168,27 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
     end)
 
+    local Sector = Category:Sector("Teleport")
+
+    Sector:Cheat("Button", "Soul Society", function()
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327, 4, 313)
+    end)
+
+    Sector:Cheat("Button", "Karakura", function()
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(124, 4, 1297)
+    end)
+
+    Sector:Cheat("Button", "Hell", function()
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2459, -165, 1010)
+    end)
+
+    Sector:Cheat("Button", "Hueco Mundo", function()
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5069, 181, 1272)
+    end)
+
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and LocalPlayer.Character then
-            if Target:FindFirstChild("Humanoid") and Target.Humanoid.Health ~= 0 then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character then
+            if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -181,24 +201,20 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                 end
 
                 if Target.Status.Blocking.Value == true then
-                    local args = {
-                        [1] = {
-                            ["inputType"] = Enum.UserInputType.Keyboard,
-                            ["keyCode"] = Enum.KeyCode.R
-                        }
-                    }
-
-                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
                 LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
 
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, getgenv().Autofarm, workspace, 0)
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
             else
                 Target = nil
 
                 NewTarget()
             end
+        else
+            Target = nil
+
+            NewTarget()
         end
 
         if getgenv().AutoQuest and getgenv().Quest ~= nil then
@@ -206,6 +222,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                 Quest("Adjucha's need a nerf.", "Actual6_Garbage9")
             elseif getgenv().Quest == "Vasto Lorde" then
                 Quest("Vasto Lorde Massacre", "SnakeWorl")
+            elseif getgenv().Quest == "Perfect Arrancar" then
+                Quest("Perfect Arrancars", "FarzanTheMemer")
             elseif getgenv().Quest == "Enhanced Arrancar" then
                 Quest("Enhanced Arrancar Slayer", "N4tsk")
             elseif getgenv().Quest == "Flaming Hollow" then
@@ -220,6 +238,176 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                 Quest("Speedy Hollow Massacre", "lazarovip2")
             elseif getgenv().Quest == "Menos" then
                 Quest("Menos Crisis", "Devourer_Yaldabaoth")
+            end
+        end
+    end)
+
+    game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
+elseif game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("Map") and game:GetService("Workspace").Map:FindFirstChild("Map") then
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+    getgenv().Autofarm = false
+    getgenv().Quest = nil
+    getgenv().AutoQuest = false
+    local Target = nil
+
+    local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
+
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+
+    local UI = Loader.new(true)
+    UI.ChangeToggleKey(Enum.KeyCode.RightControl)
+
+    local Category = UI:Category("General")
+
+    local Sector = Category:Sector("Autofarm")
+
+    function NewTarget()
+        if getgenv().Quest ~= nil and Target == nil then
+            for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                if getgenv().Quest == "Flame Captain" and v.Name == "Flame Captain" then
+                    Target = v
+                elseif getgenv().Quest == "Arrancar" and v.Name == "Arrancar" then
+                    Target = v
+                elseif getgenv().Quest == "Captain" and v.Name == "Corrupted Assistant Captain" then
+                    Target = v
+                elseif getgenv().Quest == "Bankai" and v.Name == "Corrupted Bankai User" then
+                    Target = v
+                end
+            end
+        end
+    end
+
+    function Quest(Name, Npc)
+        local args = {
+            [1] = Name,
+            [2] = workspace.NPCs[Npc]
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.TakeQuest:FireServer(unpack(args))
+    end
+
+    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            getgenv().Autofarm = Value
+
+            if Value and getgenv().Quest ~= nil and Target == nil then
+                for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                    if getgenv().Quest == "Flame Captain" and v.Name == "Flame Captain" then
+                        Target = v
+                    elseif getgenv().Quest == "Arrancar" and v.Name == "Arrancar" then
+                        Target = v
+                    elseif getgenv().Quest == "Captain" and v.Name == "Corrupted Assistant Captain" then
+                        Target = v
+                    elseif getgenv().Quest == "Bankai" and v.Name == "Corrupted Bankai User" then
+                        Target = v
+                    end
+                end
+            else
+                Target = nil
+            end
+	    end
+	)
+
+    Sector:Cheat("Dropdown", "Quest", function(Value)
+        getgenv().Quest = Value
+	end, {options = {"None", "Flame Captain", "Arrancar", "Captain", "Bankai"}})
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Auto Quest",
+	    function(Value)
+            getgenv().AutoQuest = Value
+	    end
+	)
+
+    local Sector = Category:Sector("Auto Daily Quest")
+
+    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
+
+    Sector:Cheat("Button", "daebomb234", function()
+        Quest("Pouch Delivery", "daebomb234")
+
+        fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 0)
+        fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 1)
+    end)
+
+    Sector:Cheat("Button", "XenonBlxde", function()
+        Quest("The Lost Dog", "XenonBlxde")
+
+        game:GetService("Workspace").SpawnedNPCs:WaitForChild("Lost Dog")
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnedNPCs["Lost Dog"].HumanoidRootPart.CFrame
+
+        wait(1)
+
+        fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["Lost Dog"].ProximityPrompt, 0)
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.XenonBlxde.HumanoidRootPart.CFrame
+    end)
+
+    Sector:Cheat("Button", "diego7895", function()
+        Quest("The Pond Visit", "diego7895")
+        
+        local args = {
+            [1] = "The Pond"
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
+    end)
+
+    local Sector = Category:Sector("Teleport")
+
+    Sector:Cheat("Button", "Over world", function()
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(502, 57, -128)
+    end)
+
+    Sector:Cheat("Button", "Prestige Master", function()
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(18, 151, -1401)
+    end)
+
+    game:GetService("RunService").Heartbeat:Connect(function()
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character then
+            if Target.Humanoid.Health ~= 0 then
+                if LocalPlayer.Status.Weapon.Value == nil then
+                    local args = {
+                        [1] = {
+                            ["inputType"] = Enum.UserInputType.Keyboard,
+                            ["keyCode"] = Enum.KeyCode.E
+                        }
+                    }
+    
+                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+                end
+
+                if Target.Status.Blocking.Value == true then
+                end
+
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
+
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+            else
+                Target = nil
+
+                NewTarget()
+            end
+        else
+            Target = nil
+
+            NewTarget()
+        end
+
+        if getgenv().AutoQuest and getgenv().Quest ~= nil then
+            if getgenv().Quest == "Flame Captain" then
+                Quest("Flame Captain Battle", "TheTopTinker")
+            elseif getgenv().Quest == "Flame Captain" then
+                Quest("Soul Reaper Vs Arrancar War", "Soul Reaper Captain")
+            elseif getgenv().Quest == "Captain" or "Bankai" then
+                Quest("Soul Reaper Discipline", "eliev123")
             end
         end
     end)
@@ -248,7 +436,7 @@ else
         function(Value)
             getgenv().Autofarm = Value
 
-            if Value then
+            if Value and Target ~= nil then
                 for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
                     if v.Name ~= LocalPlayer.Name then
                         Target = v
@@ -259,9 +447,19 @@ else
             end
         end)
 
+    function NewTarget()
+        if getgenv().Autofarm and Target == nil then
+            for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                if v.Name ~= LocalPlayer.Name then
+                    Target = v
+                end
+            end
+        end
+    end
+
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and LocalPlayer.Character then
-            if Target:FindFirstChild("Humanoid") and Target.Humanoid.Health ~= 0 then
+        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character then
+            if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -274,22 +472,20 @@ else
                 end
 
                 if Target.Status.Blocking.Value == true then
-                    local args = {
-                        [1] = {
-                            ["inputType"] = Enum.UserInputType.Keyboard,
-                            ["keyCode"] = Enum.KeyCode.R
-                        }
-                    }
-
-                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
                 LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
 
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, getgenv().Autofarm, workspace, 0)
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
             else
                 Target = nil
+
+                NewTarget()
             end
+        else
+            Target = nil
+
+            NewTarget()
         end
     end)
 
