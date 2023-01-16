@@ -3,6 +3,7 @@ repeat wait() until game:IsLoaded()
 if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("Map") then
     local LocalPlayer = game:GetService("Players").LocalPlayer
     getgenv().Autofarm = false
+    getgenv().Quest = nil
     getgenv().AutoQuest = false
     local Target = nil
 
@@ -24,9 +25,11 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 	    function(Value)
             getgenv().Autofarm = Value
 
-            if Value then
+            if Value and getgenv().Quest ~= nil and Target == nil then
                 for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
-                    if Target == nil and v.Name == "Adjucha" then
+                    if getgenv().Quest == "Adjucha" and v.Name == "Adjucha" then
+                        Target = v
+                    elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
                         Target = v
                     end
                 end
@@ -36,6 +39,10 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 	    end
 	)
 
+    Sector:Cheat("Dropdown", "Quest", function(Value)
+        getgenv().Quest = Value
+	end, {options = {"Adjucha", "Vasto Lorde"}})
+
     Sector:Cheat(
     	"Checkbox",
     	"Auto Quest",
@@ -43,28 +50,61 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
             getgenv().AutoQuest = Value
 	    end
 	)
-    
-    Sector:Cheat("Button", "Go to the throne", function()
-	    
-    end)
-
-    Sector:Cheat("Button", "Talk to 123imnotmomoh", function()
-	    
-    end)
 
     function NewTarget()
-        if getgenv().AutoFarm then
+        if getgenv().Quest ~= nil and Target == nil then
             for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
-                if Target == nil and v.Name == "Adjucha" then
-                     Target = v
+                if getgenv().Quest == "Adjucha" and v.Name == "Adjucha" then
+                    Target = v
+                elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
+                    Target = v
                 end
             end
         end
     end
 
+    function Quest(Name, Npc)
+        local args = {
+            [1] = Name,
+            [2] = workspace.NPCs[Npc]
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.TakeQuest:FireServer(unpack(args))
+    end
+    
+    Sector:Cheat("Button", "Go to the throne", function()
+	    Quest("Pay your respects", "UXgravity")
+
+        local args = {
+            [1] = "The Throne"
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
+    end)
+
+    Sector:Cheat("Button", "Talk to 123imnotmomoh", function()
+        Quest("Reconnaissance", "Jobikonbi22")
+
+        fireclickdetector(game.Workspace.NPCs["123imnotmomoh"].ClickDetector, 0)
+        fireclickdetector(game.Workspace.NPCs["123imnotmomoh"].ClickDetector, 1)
+    end)
+
+    Sector:Cheat("Button", "The Dogg Race", function()
+        Quest("The Dogg Race", "DoggWithDaButter")
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577, 4, 1643)
+    end)
+
+    Sector:Cheat("Button", "", function()
+        Quest("Bag of Donuts Delivery", "IAlreadyTouchedYou")
+
+        fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 0)
+        fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 1)
+    end)
+
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Humanoid") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            if Target.Humanoid.Health ~= 0 then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            if Target.Humanoid.Health > 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -86,13 +126,12 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
             end
         end
 
-        if getgenv().AutoQuest then
-            local args = {
-                [1] = "Adjucha's need a nerf.",
-                [2] = workspace.NPCs.Actual6_Garbage9
-            }
-
-            game:GetService("ReplicatedStorage").Remotes.TakeQuest:FireServer(unpack(args))
+        if getgenv().AutoQuest and getgenv().Quest ~= nil then
+            if getgenv().Quest == "Adjucha" then
+                Quest("Adjucha's need a nerf.", "Actual6_Garbage9")
+            elseif getgenv().Quest == "Vasto Lorde" then
+                Quest("Vasto Lorde Massacre", "SnakeWorl")
+            end
         end
     end)
 
@@ -132,8 +171,8 @@ else
         end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Humanoid") and LocalPlayer.Character then
-            if Target.Humanoid.Health ~= 0 then
+        if getgenv().Autofarm and Target ~= nil and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            if Target.Humanoid.Health > 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -145,7 +184,7 @@ else
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
 
                 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, getgenv().Autofarm, workspace, 0)
             else
