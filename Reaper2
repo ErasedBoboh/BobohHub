@@ -163,8 +163,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 	)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and Target:FindFirstChild("Humanoid") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            if Target.Humanoid.Health > 0 then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and LocalPlayer.Character then
+            if Target:FindFirstChild("Humanoid") then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
@@ -245,8 +245,8 @@ else
         end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-            if Target.Humanoid.Health > 0 then
+        if getgenv().Autofarm and Target ~= nil and LocalPlayer.Character then
+            if Target:FindFirstChild("Humanoid") then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
                         [1] = {
