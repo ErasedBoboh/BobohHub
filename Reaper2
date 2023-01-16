@@ -19,6 +19,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     local Sector = Category:Sector("Autofarm")
 
+    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
+
     Sector:Cheat(
     	"Checkbox",
     	"Enabled",
