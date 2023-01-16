@@ -47,7 +47,53 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
         game:GetService("ReplicatedStorage").Remotes.TakeQuest:FireServer(unpack(args))
     end
-    
+
+    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            getgenv().Autofarm = Value
+
+            if Value and getgenv().Quest ~= nil and Target == nil then
+                for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
+                    if getgenv().Quest == "Adjucha" and v.Name == "Adjucha" then
+                        Target = v
+                    elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
+                        Target = v
+                    elseif getgenv().Quest == "Enhanced Arrancar" and v.Name == "Enhanced Arrancar" then
+                        Target = v
+                    elseif getgenv().Quest == "Flaming Hollow" and v.Name == "Flaming Hollow" then
+                        Target = v
+                    elseif getgenv().Quest == "Hollow" and v.Name == "Hollow" then
+                        Target = v
+                    elseif getgenv().Quest == "Menos" and v.Name == "Menos" then
+                        Target = v
+                    end
+                end
+            else
+                Target = nil
+            end
+	    end
+	)
+
+    Sector:Cheat("Dropdown", "Quest", function(Value)
+        getgenv().Quest = Value
+	end, {options = {"None", "Adjucha", "Vasto Lorde", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Menos"}})
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Auto Quest",
+	    function(Value)
+            getgenv().AutoQuest = Value
+	    end
+	)
+
+    local Sector = Category:Sector("Auto Daily Quest")
+
+    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
+
     Sector:Cheat("Button", "UXgravity", function()
 	    Quest("Pay your respects", "UXgravity")
 
@@ -119,48 +165,6 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
     end)
-
-    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
-
-    Sector:Cheat(
-    	"Checkbox",
-    	"Enabled",
-	    function(Value)
-            getgenv().Autofarm = Value
-
-            if Value and getgenv().Quest ~= nil and Target == nil then
-                for i,v in pairs(game:GetService("Workspace").Living:GetChildren()) do
-                    if getgenv().Quest == "Adjucha" and v.Name == "Adjucha" then
-                        Target = v
-                    elseif getgenv().Quest == "Vasto Lorde" and v.Name == "Vasto Lorde" then
-                        Target = v
-                    elseif getgenv().Quest == "Enhanced Arrancar" and v.Name == "Enhanced Arrancar" then
-                        Target = v
-                    elseif getgenv().Quest == "Flaming Hollow" and v.Name == "Flaming Hollow" then
-                        Target = v
-                    elseif getgenv().Quest == "Hollow" and v.Name == "Hollow" then
-                        Target = v
-                    elseif getgenv().Quest == "Menos" and v.Name == "Menos" then
-                        Target = v
-                    end
-                end
-            else
-                Target = nil
-            end
-	    end
-	)
-
-    Sector:Cheat("Dropdown", "Quest", function(Value)
-        getgenv().Quest = Value
-	end, {options = {"None", "Adjucha", "Vasto Lorde", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Menos"}})
-
-    Sector:Cheat(
-    	"Checkbox",
-    	"Auto Quest",
-	    function(Value)
-            getgenv().AutoQuest = Value
-	    end
-	)
 
     game:GetService("RunService").Heartbeat:Connect(function()
         if getgenv().Autofarm and getgenv().Quest ~= nil and LocalPlayer.Character then
