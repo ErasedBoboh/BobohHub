@@ -344,6 +344,8 @@ elseif game.PlaceId == 8934886191 then
 
         fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["The Dog"].ProximityPrompt, 0)
 
+        wait(0.69)
+
         LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.XenonBlxde.HumanoidRootPart.CFrame
     end)
 
