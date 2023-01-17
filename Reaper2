@@ -199,7 +199,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                 if Target.Status.Blocking.Value then
                     LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame
                 else
-                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6.5, 0), Target.HumanoidRootPart.Position)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6.25, 0), Target.HumanoidRootPart.Position)
                 end
             else
                 Target = nil
@@ -384,7 +384,7 @@ elseif game.PlaceId == 8934886191 then
                 if Target.Status.Blocking.Value then
                     LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame
                 else
-                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6.5, 0), Target.HumanoidRootPart.Position)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6.25, 0), Target.HumanoidRootPart.Position)
                 end
             else
                 Target = nil
@@ -474,7 +474,7 @@ else
                 if Target.Status.Blocking.Value then
                     LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame
                 else
-                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6.5, 0), Target.HumanoidRootPart.Position)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6.25, 0), Target.HumanoidRootPart.Position)
                 end
             else
                 Target = nil
