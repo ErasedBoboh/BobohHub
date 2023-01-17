@@ -179,7 +179,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
     end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and Target.Status:FindFirstChild("Blocking") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -191,6 +191,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
     
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
+
+                LocalPlayer.Status.current_stun.Value = 0
 
                 LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
                 
@@ -320,19 +322,19 @@ elseif game.PlaceId == 8934886191 then
 	    end
 	)
 
-    Sector:Cheat("Button", "Auto Quest", function()
-        Quest("Pouch Delivery", "daebomb234")
+    Sector:Cheat("Button", "Daily Quest", function()
         Quest("The Pond Visit", "diego7895")
+        Quest("Pouch Delivery", "daebomb234")
         Quest("The Lost Dog", "XenonBlxde")
-
-        fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 0)
-        fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 1)
 
         local args = {
             [1] = "The Pond"
         }
 
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
+
+        fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 0)
+        fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 1)
 
         game:GetService("Workspace").SpawnedNPCs:WaitForChild("The Dog")
 
@@ -360,7 +362,7 @@ elseif game.PlaceId == 8934886191 then
     end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and Target.Status:FindFirstChild("Blocking") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -372,6 +374,8 @@ elseif game.PlaceId == 8934886191 then
     
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
+
+                LocalPlayer.Status.current_stun.Value = 0
 
                 LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
 
@@ -448,7 +452,7 @@ else
     end
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and Target.Status:FindFirstChild("Blocking") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -459,9 +463,11 @@ else
                     }
     
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
-                    
-                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
                 end
+
+                LocalPlayer.Status.current_stun.Value = 0
+
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
 
                 if Target.Status.Blocking.Value ~= true then
                     game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
