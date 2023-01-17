@@ -85,6 +85,13 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 	    end
 	)
 
+    Sector:Cheat(
+	    "Checkbox",
+	    "Auto Withdraw Weapon",
+        function(Value)
+            getgenv().Weapon = Value
+        end)
+
     Sector:Cheat("Dropdown", "Quest", function(Value)
         getgenv().Quest = Value
 	end, {options = {"None", "Adjucha", "Vasto Lorde", "Perfect Arrancar", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Hollow Thief", "Menos"}})
@@ -96,13 +103,6 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
             getgenv().AutoQuest = Value
 	    end
 	)
-
-    Sector:Cheat(
-	    "Checkbox",
-	    "Auto withdraw weapon",
-        function(Value)
-            getgenv().Weapon = Value
-        end)
 
     Sector:Cheat("Button", "Daily Quest", function()
 	    Quest("Pay your respects", "UXgravity")
@@ -319,6 +319,13 @@ elseif game.PlaceId == 8934886191 then
 	    end
 	)
 
+    Sector:Cheat(
+	    "Checkbox",
+	    "Auto Withdraw Weapon",
+        function(Value)
+            getgenv().Weapon = Value
+        end)
+
     Sector:Cheat("Dropdown", "Quest", function(Value)
         getgenv().Quest = Value
 	end, {options = {"None", "Flame Captain", "Arrancar", "Captain", "Bankai"}})
@@ -330,13 +337,6 @@ elseif game.PlaceId == 8934886191 then
             getgenv().AutoQuest = Value
 	    end
 	)
-
-    Sector:Cheat(
-	    "Checkbox",
-	    "Auto withdraw weapon",
-        function(Value)
-            getgenv().Weapon = Value
-        end)
 
     Sector:Cheat("Button", "Daily Quest", function()
         Quest("The Pond Visit", "diego7895")
@@ -462,7 +462,7 @@ else
 
     Sector:Cheat(
 	    "Checkbox",
-	    "Auto withdraw weapon",
+	    "Auto Withdraw Weapon",
         function(Value)
             getgenv().Weapon = Value
         end)
