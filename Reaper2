@@ -87,7 +87,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     Sector:Cheat(
 	    "Checkbox",
-	    "Auto Withdraw Weapon",
+	    "Auto Weapon",
         function(Value)
             getgenv().Weapon = Value
         end)
@@ -321,7 +321,7 @@ elseif game.PlaceId == 8934886191 then
 
     Sector:Cheat(
 	    "Checkbox",
-	    "Auto Withdraw Weapon",
+	    "Auto Weapon",
         function(Value)
             getgenv().Weapon = Value
         end)
@@ -462,7 +462,7 @@ else
 
     Sector:Cheat(
 	    "Checkbox",
-	    "Auto Withdraw Weapon",
+	    "Auto Weapon",
         function(Value)
             getgenv().Weapon = Value
         end)
