@@ -192,14 +192,14 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
-                LocalPlayer.Status.current_stun.Value = 0
+                LocalPlayer.Status["current_stun"].Value = 0
 
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
-                
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+
                 if Target.Status.Blocking.Value ~= true then
-                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
                 else
-                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame + Vector3.new(0, 0, -5)
                 end
             else
                 Target = nil
@@ -377,14 +377,14 @@ elseif game.PlaceId == 8934886191 then
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
-                LocalPlayer.Status.current_stun.Value = 0
+                LocalPlayer.Status["current_stun"].Value = 0
 
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
 
                 if Target.Status.Blocking.Value ~= true then
-                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
                 else
-                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame + Vector3.new(0, 0, -5)
                 end
             else
                 Target = nil
@@ -467,14 +467,14 @@ else
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
-                LocalPlayer.Status.current_stun.Value = 0
+                LocalPlayer.Status["current_stun"].Value = 0
 
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
+                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
 
                 if Target.Status.Blocking.Value ~= true then
-                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
                 else
-                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = Target.HumanoidRootPart.CFrame + Vector3.new(0, 0, -5)
                 end
             else
                 Target = nil
