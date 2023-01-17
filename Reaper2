@@ -182,17 +182,6 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
     game:GetService("RunService").Heartbeat:Connect(function()
         if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and Target.Status:FindFirstChild("Blocking") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
-                if LocalPlayer.Status.Weapon.Value == nil then
-                    local args = {
-                        [1] = {
-                            ["inputType"] = Enum.UserInputType.Keyboard,
-                            ["keyCode"] = Enum.KeyCode.E
-                        }
-                    }
-    
-                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
-                end
-
                 LocalPlayer.Status["current_stun"].Value = 0
 
                 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
@@ -470,17 +459,6 @@ else
     game:GetService("RunService").Heartbeat:Connect(function()
         if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and Target.Status:FindFirstChild("Blocking") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
-                if LocalPlayer.Status.Weapon.Value == nil then
-                    local args = {
-                        [1] = {
-                            ["inputType"] = Enum.UserInputType.Keyboard,
-                            ["keyCode"] = Enum.KeyCode.E
-                        }
-                    }
-    
-                    game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
-                end
-
                 LocalPlayer.Status["current_stun"].Value = 0
 
                 game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
