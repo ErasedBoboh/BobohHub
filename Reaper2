@@ -32,6 +32,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                     Target = v
                 elseif getgenv().Quest == "Hollow" and v.Name == "Hollow" then
                     Target = v
+                elseif getgenv().Quest == "Hollow Thief" and v.Name == "Hollow Thief" then
+                    Target = v
                 elseif getgenv().Quest == "Menos" and v.Name == "Menos" then
                     Target = v
                 end
@@ -70,6 +72,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                         Target = v
                     elseif getgenv().Quest == "Hollow" and v.Name == "Hollow" then
                         Target = v
+                    elseif getgenv().Quest == "Hollow Thief" and v.Name == "Hollow Thief" then
+                        Target = v
                     elseif getgenv().Quest == "Menos" and v.Name == "Menos" then
                         Target = v
                     end
@@ -82,7 +86,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 
     Sector:Cheat("Dropdown", "Quest", function(Value)
         getgenv().Quest = Value
-	end, {options = {"None", "Adjucha", "Vasto Lorde", "Perfect Arrancar", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Menos"}})
+	end, {options = {"None", "Adjucha", "Vasto Lorde", "Perfect Arrancar", "Enhanced Arrancar", "Flaming Hollow", "Hollow", "Hollow Thief", "Menos"}})
 
     Sector:Cheat(
     	"Checkbox",
@@ -92,56 +96,22 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 	    end
 	)
 
-    local Sector = Category:Sector("Auto Daily Quest")
-
-    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
-
-    Sector:Cheat("Button", "UXgravity", function()
+    Sector:Cheat("Button", "Daily Quest", function()
 	    Quest("Pay your respects", "UXgravity")
+        Quest("Reconnaissance", "Jobikonbi22")
+        Quest("World Exploration", "The Explorer")
+        Quest("Bag of Donuts Delivery", "IAlreadyTouchedYou")
+        Quest("The Dogg Race", "DoggWithDaButter")
+        Quest("Finding the Lost Child", "Kyogoto")
 
         local args = {
             [1] = "The Throne"
         }
 
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
-    end)
-
-    Sector:Cheat("Button", "Jobikonbi22", function()
-        Quest("Reconnaissance", "Jobikonbi22")
 
         fireclickdetector(game.Workspace.NPCs["123imnotmomoh"].ClickDetector, 0)
         fireclickdetector(game.Workspace.NPCs["123imnotmomoh"].ClickDetector, 1)
-    end)
-
-    Sector:Cheat("Button", "DoggWithDaButter", function()
-        Quest("The Dogg Race", "DoggWithDaButter")
-
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577, 4, 1643)
-    end)
-
-    Sector:Cheat("Button", "IAlreadyTouchedYou", function()
-        Quest("Bag of Donuts Delivery", "IAlreadyTouchedYou")
-
-        fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 0)
-        fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 1)
-    end)
-
-    Sector:Cheat("Button", "Kyogoto", function()
-        Quest("Finding the Lost Child", "Kyogoto")
-
-        game:GetService("Workspace").SpawnedNPCs:WaitForChild("Lost Child")
-
-        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnedNPCs["Lost Child"].HumanoidRootPart.CFrame
-
-        wait(1)
-
-        fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["Lost Child"].ProximityPrompt, 0)
-
-        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.Kyogoto.HumanoidRootPart.CFrame
-    end)
-
-    Sector:Cheat("Button", "The Explorer", function()
-        Quest("World Exploration", "The Explorer")
         
         local args = {
             [1] = "The Church"
@@ -166,12 +136,34 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
         }
 
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
+
+        fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 0)
+        fireclickdetector(game.Workspace.NPCs["The Friend"].ClickDetector, 1)
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577, 4, 1643)
+
+        wait(5)
+
+        game:GetService("Workspace").SpawnedNPCs:WaitForChild("Lost Child")
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnedNPCs["Lost Child"].HumanoidRootPart.CFrame
+
+        wait(0.69)
+
+        fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["Lost Child"].ProximityPrompt, 0)
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.Kyogoto.HumanoidRootPart.CFrame
     end)
 
     local Sector = Category:Sector("Teleport")
 
     Sector:Cheat("Button", "Soul Society", function()
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327, 4, 313)
+        local args = {
+            [1] = "Soul Society"
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.Teleport:FireServer(unpack(args))
+
     end)
 
     Sector:Cheat("Button", "Karakura", function()
@@ -187,7 +179,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
     end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -200,12 +192,13 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
-                if Target.Status.Blocking.Value == true then
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
+                
+                if Target.Status.Blocking.Value ~= true then
+                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                else
+                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
                 end
-
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
-
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
             else
                 Target = nil
 
@@ -236,6 +229,8 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
                 game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
             elseif getgenv().Quest == "Hollow" then
                 Quest("Speedy Hollow Massacre", "lazarovip2")
+            elseif getgenv().Quest == "Hollow Thief" then
+                Quest("The Hollow Thief", "Senzial")
             elseif getgenv().Quest == "Menos" then
                 Quest("Menos Crisis", "Devourer_Yaldabaoth")
             end
@@ -243,7 +238,7 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
     end)
 
     game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
-elseif game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("Map") and game:GetService("Workspace").Map:FindFirstChild("Map") then
+elseif game.PlaceId == 8934886191 then
     local LocalPlayer = game:GetService("Players").LocalPlayer
     getgenv().Autofarm = false
     getgenv().Quest = nil
@@ -325,45 +320,39 @@ elseif game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChil
 	    end
 	)
 
-    local Sector = Category:Sector("Auto Daily Quest")
-
-    Sector:Cheat("Label", "System Error | Means quest is on cooldown")
-
-    Sector:Cheat("Button", "daebomb234", function()
+    Sector:Cheat("Button", "Auto Quest", function()
         Quest("Pouch Delivery", "daebomb234")
+        Quest("The Pond Visit", "diego7895")
+        Quest("The Lost Dog", "XenonBlxde")
 
         fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 0)
         fireclickdetector(game.Workspace.NPCs["DonFlacko"].ClickDetector, 1)
-    end)
 
-    Sector:Cheat("Button", "XenonBlxde", function()
-        Quest("The Lost Dog", "XenonBlxde")
-
-        game:GetService("Workspace").SpawnedNPCs:WaitForChild("Lost Dog")
-
-        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnedNPCs["Lost Dog"].HumanoidRootPart.CFrame
-
-        wait(1)
-
-        fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["Lost Dog"].ProximityPrompt, 0)
-
-        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.XenonBlxde.HumanoidRootPart.CFrame
-    end)
-
-    Sector:Cheat("Button", "diego7895", function()
-        Quest("The Pond Visit", "diego7895")
-        
         local args = {
             [1] = "The Pond"
         }
 
         game:GetService("ReplicatedStorage").Remotes.AmbienceQuest:FireServer(unpack(args))
+
+        game:GetService("Workspace").SpawnedNPCs:WaitForChild("The Dog")
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").SpawnedNPCs["The Dog"].HumanoidRootPart.CFrame
+
+        wait(5)
+
+        fireproximityprompt(game:GetService("Workspace").SpawnedNPCs["The Dog"].ProximityPrompt, 0)
+
+        LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").NPCs.XenonBlxde.HumanoidRootPart.CFrame
     end)
 
     local Sector = Category:Sector("Teleport")
 
     Sector:Cheat("Button", "Over world", function()
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(502, 57, -128)
+        local args = {
+            [1] = "Home"
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.Teleport:FireServer(unpack(args))
     end)
 
     Sector:Cheat("Button", "Prestige Master", function()
@@ -371,7 +360,7 @@ elseif game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChil
     end)
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character then
+        if getgenv().Autofarm and getgenv().Quest ~= nil and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -384,12 +373,13 @@ elseif game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChil
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
                 end
 
-                if Target.Status.Blocking.Value == true then
+                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
+
+                if Target.Status.Blocking.Value ~= true then
+                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                else
+                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
                 end
-
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
-
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
             else
                 Target = nil
 
@@ -458,7 +448,7 @@ else
     end
 
     game:GetService("RunService").Heartbeat:Connect(function()
-        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character then
+        if getgenv().Autofarm and Target ~= nil and Target:FindFirstChild("Humanoid") and Target:FindFirstChild("HumanoidRootPart") and Target:FindFirstChild("Status") and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
             if Target.Humanoid.Health ~= 0 then
                 if LocalPlayer.Status.Weapon.Value == nil then
                     local args = {
@@ -469,14 +459,15 @@ else
                     }
     
                     game:GetService("ReplicatedStorage").Remotes.Input:FireServer(unpack(args))
+                    
+                    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 6, 0), Target.HumanoidRootPart.Position)
                 end
 
-                if Target.Status.Blocking.Value == true then
+                if Target.Status.Blocking.Value ~= true then
+                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+                else
+                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
                 end
-
-                LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Target.HumanoidRootPart.Position + Vector3.new(0, 7, 0), Target.HumanoidRootPart.Position)
-
-                game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
             else
                 Target = nil
 
