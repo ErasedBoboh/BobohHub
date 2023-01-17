@@ -97,6 +97,13 @@ if game.PlaceId == 7056922815 and game:GetService("Workspace"):FindFirstChild("M
 	    end
 	)
 
+    Sector:Cheat(
+	    "Checkbox",
+	    "Auto withdraw weapon",
+        function(Value)
+            getgenv().Weapon = Value
+        end)
+
     Sector:Cheat("Button", "Daily Quest", function()
 	    Quest("Pay your respects", "UXgravity")
         Quest("Reconnaissance", "Jobikonbi22")
@@ -324,6 +331,13 @@ elseif game.PlaceId == 8934886191 then
 	    end
 	)
 
+    Sector:Cheat(
+	    "Checkbox",
+	    "Auto withdraw weapon",
+        function(Value)
+            getgenv().Weapon = Value
+        end)
+
     Sector:Cheat("Button", "Daily Quest", function()
         Quest("The Pond Visit", "diego7895")
         Quest("Pouch Delivery", "daebomb234")
@@ -444,6 +458,13 @@ else
             else
                 Target = nil
             end
+        end)
+
+    Sector:Cheat(
+	    "Checkbox",
+	    "Auto withdraw weapon",
+        function(Value)
+            getgenv().Weapon = Value
         end)
 
     function NewTarget()
