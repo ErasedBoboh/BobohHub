@@ -416,7 +416,7 @@ elseif game.PlaceId == 8934886191 then
             if getgenv().Quest == "Flame Captain" then
                 Quest("Flame Captain Battle", "TheTopTinker")
             elseif getgenv().Quest == "Arrancar" then
-                Quest("Soul Reaper Vs Arrancar War", "Soul Reaper Captain")
+                Quest("The Soul Reaper Vs Arrancar War", "Soul Reaper Captain")
             elseif getgenv().Quest == "Captain" then
                 Quest("Soul Reaper Discipline", "eliev123")
             elseif getgenv().Quest == "Bankai" then
