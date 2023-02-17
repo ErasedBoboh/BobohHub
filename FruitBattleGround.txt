@@ -1,0 +1,208 @@
+repeat wait() until game:IsLoaded()
+
+if game.PlaceId == 9224601490 then
+    local AutoSpin = false
+    local Fruits = {"Barrier", "Chop", "Sand", "Smoke", "Rubber", "Bomb", "Ice", "Darkness", "Light", "Flame", "Magma", "Paw", "Quake", "Gravity", "Pheonix", "TSRubber", "Dragon"}
+    local SpinFruits = {
+        Barrier = false,
+        Chop = false,
+        Sand = false,
+        Smoke = false,
+        Rubber = false,
+        Bomb = false,
+        Ice = false,
+        Darkness = false,
+        Light = false,
+        Flame = false,
+        Magma = false,
+        Paw = false,
+        Quake = false,
+        Gravity = false,
+        Phoenix = false,
+        TSRubber = false,
+        Dragon = false
+    }
+    local Codes = {"FREECASHBRO", "KRAZYSUPPORT", "160WOW", "DRACOMASTA", "KAIDOBEAST", "GOKRAZY150", "140KAGAIN", "FATSTACKZ", "RAININGGEMS!", "GEARFOOOOURTH", "ITJUSTDONTSTOP", "LETSGOO130K"}
+
+    local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
+
+    local Players = game:GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+
+    local UI = Loader.new(true)
+    UI.ChangeToggleKey(Enum.KeyCode.RightControl)
+
+    local Category = UI:Category("General")
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            AutoSpin = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Chop",
+	    function(Value)
+            SpinFruits.Chop = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Sand",
+	    function(Value)
+            SpinFruits.Sand = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Smoke",
+	    function(Value)
+            SpinFruits.Smoke = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Rubber",
+	    function(Value)
+            SpinFruits.Rubber = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Bomb",
+	    function(Value)
+            SpinFruits.Bomb = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Ice",
+	    function(Value)
+            SpinFruits.Ice = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Darkness",
+	    function(Value)
+            SpinFruits.Darkness = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Light",
+	    function(Value)
+            SpinFruits.Light = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Flame",
+	    function(Value)
+            SpinFruits.Flame = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Magma",
+	    function(Value)
+            SpinFruits.Magma = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Paw",
+	    function(Value)
+            SpinFruits.Paw = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Quake",
+	    function(Value)
+            SpinFruits.Quake = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Gravity",
+	    function(Value)
+            SpinFruits.Gravity = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Phoenix",
+	    function(Value)
+            SpinFruits.Phoenix = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"TSRubber",
+	    function(Value)
+            SpinFruits.TSRubber = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Dragon",
+	    function(Value)
+            SpinFruits.Dragon = Value
+	    end
+	)
+	
+	local Sector = Category:Sector("Codes")
+    
+    Sector:Cheat("Button", "Redeem all", function()
+        for i,v in pairs(Codes) do
+            local args = {
+                [1] = "Codes",
+                [2] = "Redeem",
+                [3] = {
+                    ["Code"] = v
+                }
+            }
+
+            game:GetService("ReplicatedStorage"):WaitForChild("Replicator"):InvokeServer(unpack(args))
+        end
+    end)
+	
+	game:GetService("RunService").Heartbeat:Connect(function()
+        if AutoSpin then
+            for i,v in pairs(SpinFruits) do
+                if v then
+                    for i,v in pairs(Fruits) do
+                        if string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, v) then end
+                    end
+                else
+                    local args = {
+                        [1] = "FruitsHandler",
+                        [2] = "Spin",
+                        [3] = {}
+                    }
+
+                    game:GetService("ReplicatedStorage"):WaitForChild("Replicator"):InvokeServer(unpack(args))
+                end
+            end
+        end
+    end)
+end
