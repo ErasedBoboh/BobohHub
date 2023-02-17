@@ -38,7 +38,7 @@ if game.PlaceId == 9224601490 then
 
     Sector:Cheat(
     	"Checkbox",
-    	"Enabled",
+    	"Enable",
 	    function(Value)
             AutoSpin = Value
 	    end
