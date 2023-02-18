@@ -1,9 +1,11 @@
 repeat wait() until game:IsLoaded()
 
 if game.PlaceId == 9224601490 then
+    local AutoLevel = false
+    local OldCFrame = nil
     local AutoSpin = false
-    local Fruits = {"Barrier", "Chop", "Sand", "Smoke", "Rubber", "Bomb", "Ice", "Darkness", "Light", "Flame", "Magma", "Paw", "Quake", "Gravity", "Pheonix", "TSRubber", "Dragon"}
-    local SpinFruits = {
+    local SpinMethod = "Normal"
+    local KeepFruits = {
         Barrier = false,
         Chop = false,
         Sand = false,
@@ -34,21 +36,35 @@ if game.PlaceId == 9224601490 then
 
     local Category = UI:Category("General")
     
+    local Sector = Category:Sector("Level")
+    
+    Sector:Cheat(
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            AutoLevel = Value
+	    end
+	)
+    
     local Sector = Category:Sector("Fruit")
 
     Sector:Cheat(
     	"Checkbox",
-    	"Enable",
+    	"Enabled",
 	    function(Value)
             AutoSpin = Value
 	    end
 	)
 	
+	Sector:Cheat("Dropdown", "Spin Method", function(Value)
+	    SpinMethod = Value
+    end, {options = {"Normal", "Fast"}})
+	
 	Sector:Cheat(
     	"Checkbox",
     	"Chop",
 	    function(Value)
-            SpinFruits.Chop = Value
+            KeepFruits.Chop = Value
 	    end
 	)
 	
@@ -56,7 +72,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Sand",
 	    function(Value)
-            SpinFruits.Sand = Value
+            KeepFruits.Sand = Value
 	    end
 	)
 	
@@ -64,7 +80,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Smoke",
 	    function(Value)
-            SpinFruits.Smoke = Value
+            KeepFruits.Smoke = Value
 	    end
 	)
 	
@@ -72,7 +88,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Rubber",
 	    function(Value)
-            SpinFruits.Rubber = Value
+            KeepFruits.Rubber = Value
 	    end
 	)
 	
@@ -80,7 +96,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Bomb",
 	    function(Value)
-            SpinFruits.Bomb = Value
+            KeepFruits.Bomb = Value
 	    end
 	)
 	
@@ -88,7 +104,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Ice",
 	    function(Value)
-            SpinFruits.Ice = Value
+            KeepFruits.Ice = Value
 	    end
 	)
 	
@@ -96,7 +112,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Darkness",
 	    function(Value)
-            SpinFruits.Darkness = Value
+            KeepFruits.Darkness = Value
 	    end
 	)
 	
@@ -104,7 +120,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Light",
 	    function(Value)
-            SpinFruits.Light = Value
+            KeepFruits.Light = Value
 	    end
 	)
 	
@@ -112,7 +128,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Flame",
 	    function(Value)
-            SpinFruits.Flame = Value
+            KeepFruits.Flame = Value
 	    end
 	)
 	
@@ -120,7 +136,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Magma",
 	    function(Value)
-            SpinFruits.Magma = Value
+            KeepFruits.Magma = Value
 	    end
 	)
 	
@@ -128,7 +144,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Paw",
 	    function(Value)
-            SpinFruits.Paw = Value
+            KeepFruits.Paw = Value
 	    end
 	)
 	
@@ -136,7 +152,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Quake",
 	    function(Value)
-            SpinFruits.Quake = Value
+            KeepFruits.Quake = Value
 	    end
 	)
 	
@@ -144,7 +160,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Gravity",
 	    function(Value)
-            SpinFruits.Gravity = Value
+            KeepFruits.Gravity = Value
 	    end
 	)
 	
@@ -152,7 +168,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Phoenix",
 	    function(Value)
-            SpinFruits.Phoenix = Value
+            KeepFruits.Phoenix = Value
 	    end
 	)
 	
@@ -160,7 +176,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"TSRubber",
 	    function(Value)
-            SpinFruits.TSRubber = Value
+            KeepFruits.TSRubber = Value
 	    end
 	)
 	
@@ -168,7 +184,7 @@ if game.PlaceId == 9224601490 then
     	"Checkbox",
     	"Dragon",
 	    function(Value)
-            SpinFruits.Dragon = Value
+            KeepFruits.Dragon = Value
 	    end
 	)
 	
@@ -189,22 +205,60 @@ if game.PlaceId == 9224601490 then
     end)
 	
 	game:GetService("RunService").Heartbeat:Connect(function()
-        if AutoSpin then
-            for i,v in pairs(SpinFruits) do
-                if v then
-                    for i,v in pairs(Fruits) do
-                        if string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, v) then end
-                    end
+	    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") then
+	        if AutoLevel then
+	            for i,v in pairs(game.Players.LocalPlayer.PlayerGui.UI.Hotbar:GetChildren()) do
+	                if v.Name == "1" then
+	                    if not game.Players.LocalPlayer.Character:FindFirstChild(v.Title.Text) then
+	                        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[v.Title.Text])
+	                    end
+	            
+	                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, true, workspace, 0)
+	                    game:GetService("VirtualInputManager"):SendMouseButtonEvent(0, 0, 0, false, workspace, 0)
+	                end
+	            end
+	            
+	            OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	            
+	            wait(1)
+	        
+	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99999, 99999, 99999)
+	        else
+	            if OldCFrame ~= nil then
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
+	            
+	                OldCFrame = nil
+	            end
+	        end
+	    end
+	    
+        if AutoSpin and not game.Players.LocalPlayer.Character then
+            if string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Dragon") and KeepFruits.Dragon then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "TSRubber") and KeepFruits.TSRubber then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Phoenix") and KeepFruits.Phoenix then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Gravity") and KeepFruits.Gravity then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Quake") and KeepFruits.Quake then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Paw") and KeepFruits.Paw then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Magma") and KeepFruits.Magma then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Flame") and KeepFruits.Flame then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Light") and KeepFruits.Light then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Darkness") and KeepFruits.Darkness then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Ice") and KeepFruits.Ice then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Bomb") and KeepFruits.Bomb then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Rubber") and KeepFruits.Rubber then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Smoke") and KeepFruits.Smoke then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Sand") and KeepFruits.Sand then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Chop") and KeepFruits.Chop then
+            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Barrier") and KeepFruits.Barrier then
+            else
+                if SpinMethod == "Normal" then
+                    game:GetService("ReplicatedStorage"):WaitForChild("Replicator"):InvokeServer("FruitsHandler", "Spin", {})
                 else
-                    local args = {
-                        [1] = "FruitsHandler",
-                        [2] = "Spin",
-                        [3] = {}
-                    }
-
-                    game:GetService("ReplicatedStorage"):WaitForChild("Replicator"):InvokeServer(unpack(args))
+                    game:GetService("ReplicatedStorage"):WaitForChild("Replicator"):InvokeServer("FruitsHandler", "Spin", {["Type"] = "Fast"})
                 end
             end
         end
-    end)
+	end)
+
+    game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
 end
