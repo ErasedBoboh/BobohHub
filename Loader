@@ -1,4 +1,6 @@
-if game.PlaceId == 7056922815 then
+repeat wait() until game:IsLoaded()
+
+if game.PlaceId == 9224601490 then
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Bob0h/BobohHub/main/FruitBattleGround'))()
 elseif game.PlaceId == 7056922815 then
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Bob0h/BobohHub/main/Reaper2'))()
