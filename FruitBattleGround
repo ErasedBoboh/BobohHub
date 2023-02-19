@@ -2,6 +2,7 @@ repeat wait() until game:IsLoaded()
 
 if game.PlaceId == 9224601490 then
     local AutoLevel = false
+    local Fruit = nil
     local OldCFrame = nil
     local AutoSpin = false
     local SpinMethod = "Normal"
@@ -203,18 +204,80 @@ if game.PlaceId == 9224601490 then
             game:GetService("ReplicatedStorage"):WaitForChild("Replicator"):InvokeServer(unpack(args))
         end
     end)
+    
+    local Category = UI:Category("Visual")
+    
+    local Category = UI:Category("Misc")
+    
+    local Sector = Category:Sector("Teleport")
+    
+    Sector:Cheat("Button", "Fountain", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(721, 721, -266)
+    end)
 	
 	game:GetService("RunService").Heartbeat:Connect(function()
 	    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") then
 	        if AutoLevel then
-	            if not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) then
+	            if string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Dragon") then
+	                Fruit = "Dragon"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "TSRubber") then
+	                Fruit = "TSRubber"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Phoenix") then
+	                Fruit = "Phoenix"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Gravity") then
+	                Fruit = "Gravity"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Quake") then
+	                Fruit = "Quake"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Paw") then
+	                Fruit = "Paw"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Magma") then
+	                Fruit = "Magma"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Flame") then
+	                Fruit = "Flame"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Light") then
+	                Fruit = "Light"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Darkness") then
+	                Fruit = "Darkness"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Ice") then
+	                Fruit = "Ice"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Bomb") then
+	                Fruit = "Bomb"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Rubber") then
+	                Fruit = "Rubber"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Smoke") then
+	                Fruit = "Smoke"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Sand") then
+	                Fruit = "Sand"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Chop") then
+	                Fruit = "Chop"
+	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Barrier") then
+	                Fruit = "Barrier"
+	            end
+	            
+	            if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) then
 	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text])
-	            elseif not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) then
+	                
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text, " ", ""), {})
+	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) then
 	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text])
-	            elseif not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) then
+	                
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text, " ", "") {})
+	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) then
 	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text])
-	            elseif not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) then
+	                
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text, " ", "") {})
+	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) then
 	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text])
+	                
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text, " ", "") {})
+	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) then
+	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text])
+	                
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text, " ", "") {})
+	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) then
+	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text])
+	                
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text, " ", "") {})
 	            else
 	                game.Players.LocalPlayer.Character.Humanoid:UnequipTools() 
 	            end
