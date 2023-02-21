@@ -89,8 +89,44 @@ if game.PlaceId == 2809202155 then
 
     local Sector = Category:Sector("Buy")
 
-    Sector:Cheat("Button", "Vampire Spec (10k + Vamp Race)", function()
+    Sector:Sector("Spec")
+
+    Sector:Cheat("Button", "Vampire [10k + Vamp Race]", function()
         game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Elder Vampire Roomy", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+    end)
+
+    Sector:Cheat("Button", "Hamon [10k + Zepellin's Headband]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Jonathan Joestar", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+    end)
+
+    Sector:Cheat("Button", "Boxing [10k + Quinton's Glove]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Quinton", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+    end)
+
+    Sector:Cheat("Button", "Pluck [10k + Ancient Scroll]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Uzurashi", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+    end)
+
+    Sector:Cheat("Button", "Spin [10k + Steel Ball]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Gyro", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+    end)
+
+    Sector:Sector("Item")
+
+    Sector:Cheat("Button", "Pluck [1k]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer()
+    end)
+
+    Sector:Cheat("Button", "Boxing Gloves [1k]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer()
+    end)
+
+    Sector:Cheat("Button", "Bat [1k]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer()
+    end)
+
+    Sector:Cheat("Button", "Umbrella [100]", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Jongic", ["Option"] = "Option1", ["Dialogue"] = "Dialogue4"})
     end)
     
     local Sector = Category:Sector("Teleport")
@@ -110,6 +146,11 @@ if game.PlaceId == 2809202155 then
                 game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Doppio", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
 
                 if game.Workspace.Living:FindFirstChild("Dio") and game.Workspace.Living.Jotaro:FindFirstChild("HumanoidRootPart") then
+                end
+            elseif game.Players.LocalPlayer.PlayerStats.Level.Value <= 25 then
+                game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "William Zeppeli", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5\4"})
+
+                if game.Workspace.Living:FindFirstChild("Vampire") and game.Workspace.Living.Jotaro:FindFirstChild("HumanoidRootPart") then
                 end
             end
 
