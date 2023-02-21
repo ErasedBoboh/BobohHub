@@ -1,0 +1,139 @@
+repeat wait() until game:IsLoaded()
+
+if game.PlaceId == 2809202155 then
+    local AutoLevel = false
+    local AutoStand = false
+    local KeepStands = {
+        WhiteSnake = false,
+        StarPlatinum = false,
+        TheWorld = false,
+        KillerQueen = false,
+        CrazyDiamond = false,
+        RedHotChiliPepper = false,
+        Anubis = false,
+        GoldExpierence = false,
+        KingCrimson = false,
+        SilverChariot = false,
+        HermitPurple = false,
+        PurpleHaze = false
+    }
+    local VampireBurn = false
+    local Codes = {""}
+
+    local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
+
+    local UI = Loader.new(true)
+    UI.ChangeToggleKey(Enum.KeyCode.RightControl)
+
+    local Category = UI:Category("General")
+    
+    local Sector = Category:Sector("Autofarm")
+    
+    Sector:Cheat(
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            AutoLevel = Value
+	    end
+	)
+    
+    local Sector = Category:Sector("Stand")
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Enabled",
+	    function(Value)
+            AutoStand = Value
+	    end
+	)
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"The World",
+	    function(Value)
+            KeepStands.TheWorld = Value
+	    end
+	)
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Star Platinum",
+	    function(Value)
+            KeepStands.StarPlatinum = Value
+	    end
+	)
+	
+    local Sector = Category:Sector("Codes")
+    
+    Sector:Cheat("Button", "Redeem all", function()
+        for i,v in pairs(Codes) do
+            game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer("RedeemCode", v)
+        end
+    end)
+    
+    local Category = UI:Category("Visual")
+
+    local Sector = Category:Sector("Esp")
+    
+    local Category = UI:Category("Misc")
+
+    local Sector = Category:Sector("Disable")
+
+    Sector:Cheat(
+    	"Checkbox",
+    	"Vampire Burn",
+	    function(Value)
+            VampireBurn = Value
+	    end
+	)
+
+    local Sector = Category:Sector("Buy")
+
+    Sector:Cheat("Button", "Vampire Spec (10k + Vamp Race)", function()
+        game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Elder Vampire Roomy", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+    end)
+    
+    local Sector = Category:Sector("Teleport")
+    
+    Sector:Cheat("Button", "", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-300, 0, 14)
+    end)
+	
+	game:GetService("RunService").Heartbeat:Connect(function()
+	    if game.Players.LocalPlayer.Character and AutoLevel  then
+	        if game.Players.LocalPlayer.PlayerStats.Level.Value <= 35 then
+                game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Dio", ["Option"] = "Option1", ["Dialogue"] = "Dialogue4"})
+
+                if game.Workspace.Living:FindFirstChild("Jotaro") and game.Workspace.Living.Jotaro:FindFirstChild("HumanoidRootPart") then
+                end
+            elseif game.Players.LocalPlayer.PlayerStats.Level.Value <= 30 then
+                game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Doppio", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
+
+                if game.Workspace.Living:FindFirstChild("Dio") and game.Workspace.Living.Jotaro:FindFirstChild("HumanoidRootPart") then
+                end
+            end
+
+            if not game.Players.LocalPlayer.Character.SummonedStand.Value then
+                game:GetService("Players").LocalPlayer.Character.RemoteFunction:InvokeServer("ToggleStand", "Toggle")
+            end
+        end
+	    
+        if AutoStand and not game.Players.LocalPlayer.Character then
+            
+        end
+	end)
+
+    hookmetamethod(game, "__namecall", newcclosure(function(s, ...)
+        local m = getnamecallmethod()
+        local a = {...}
+
+        if tostring(s) == "RemoteEvent" and m == "FireServer" and a[1] == "VampireBurn" and VampireBurn then
+            return
+        end
+
+        return s[m](s, unpack(a))
+    end))
+
+
+    game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
+end
