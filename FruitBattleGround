@@ -283,9 +283,9 @@ if game.PlaceId == 9224601490 then
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
 				else
-				    game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                    Move = nil
 
-					Move = nil
+				    game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 				end
 
 				if Move ~= nil and game.Players.LocalPlayer.Backpack:FindFirstChild(Move) or game.Players.LocalPlayer.Character:FindFirstChild(Move) then
