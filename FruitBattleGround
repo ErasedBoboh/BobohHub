@@ -295,8 +295,30 @@ if game.PlaceId == 9224601490 then
 	            if OldCFrame == nil then
 	                OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 	            end
-	        
-	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(math.random(CFrames), 99999, 99999)
+	            
+                local Random = math.random(1, 10)
+					
+				if Random == 1 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99999, 99999, 99999)
+				elseif Random == 2 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99899, 99999, 99999)
+				elseif Random == 3 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99799, 99999, 99999)
+				elseif Random == 4 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99699, 99999, 99999)
+				elseif Random == 5 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99599, 99999, 99999)
+				elseif Random == 6 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99499, 99999, 99999)
+				elseif Random == 7 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99399, 99999, 99999)
+				elseif Random == 8 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99299, 99999, 99999)
+				elseif Random == 9 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99199, 99999, 99999)
+				elseif Random == 10 then
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99099, 99999, 99999)
+				end
 	        elseif OldCFrame ~= nil then
 	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
 	            
