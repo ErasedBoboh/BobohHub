@@ -282,10 +282,6 @@ if game.PlaceId == 9224601490 then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
-				else
-				    Move = nil
-
-					game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 				end
 
 				if Move ~= nil and game.Players.LocalPlayer.Character:FindFirstChild(Move) then
@@ -293,8 +289,6 @@ if game.PlaceId == 9224601490 then
 	                
                     game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {})
 				end
-
-				local CFrames = {99959, 99909, 99899, 99859, 99809, 99799, 99759, 99709}
 	            
 	            if OldCFrame == nil then
 	                OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
