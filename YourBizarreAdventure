@@ -89,7 +89,7 @@ if game.PlaceId == 2809202155 then
 
     local Sector = Category:Sector("Buy")
 
-    Sector:Sector("Spec")
+    Sector:Cheat("Label", "Spec")
 
     Sector:Cheat("Button", "Vampire [10k + Vamp Race]", function()
         game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Elder Vampire Roomy", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
@@ -111,7 +111,7 @@ if game.PlaceId == 2809202155 then
         game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer("EndDialogue", {["NPC"] = "Gyro", ["Option"] = "Option1", ["Dialogue"] = "Dialogue5"})
     end)
 
-    Sector:Sector("Item")
+    Sector:Cheat("Label", "Item")
 
     Sector:Cheat("Button", "Pluck [1k]", function()
         game:GetService("Players").LocalPlayer.Character.RemoteEvent:FireServer()
