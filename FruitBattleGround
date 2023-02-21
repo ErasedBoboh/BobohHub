@@ -3,6 +3,7 @@ repeat wait() until game:IsLoaded()
 if game.PlaceId == 9224601490 then
     local AutoLevel = false
     local Fruit = nil
+	local Move = nil
     local OldCFrame = nil
     local AutoSpin = false
     local SpinMethod = "Normal"
@@ -206,6 +207,24 @@ if game.PlaceId == 9224601490 then
     end)
     
     local Category = UI:Category("Visual")
+
+	local Esp = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+ 
+-- config
+    Esp.Players = false
+    Esp.Boxes = false
+    Esp.Names = true
+    Esp:Toggle(true)
+
+	local Sector = Category:Sector("Esp")
+
+	Sector:Cheat(
+    	"Checkbox",
+    	"Players",
+	    function(Value)
+            Esp.Value = Value
+	    end
+	)
     
     local Category = UI:Category("Misc")
     
@@ -253,34 +272,28 @@ if game.PlaceId == 9224601490 then
 	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Barrier") then
 	                Fruit = "Barrier"
 	            end
-	            
-	            if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) then
-	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text])
+
+				if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) then
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) then
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) then
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar[""].Title.Text
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) then
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) then
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
+				else
+				    Move = nil
+
+					game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+				end
+
+				if Move ~= nil then
+					game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[Move])
 	                
-	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text, " ", ""), {})
-	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) then
-	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text])
-
-	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text, " ", ""), {})
-	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) then
-	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text])
-
-	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text, " ", ""), {})
-	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) then
-	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text])
-
-	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text, " ", ""), {})
-	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) then
-	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text])
-
-	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text, " ", ""), {})
-	            elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) then
-	                game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text])
-
-	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text, " ", ""), {})
-	            else
-	                game.Players.LocalPlayer.Character.Humanoid:UnequipTools() 
-	            end
+                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {})
+				end
 	            
 	            if OldCFrame == nil then
 	                OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
