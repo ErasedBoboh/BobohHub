@@ -209,8 +209,7 @@ if game.PlaceId == 9224601490 then
     local Category = UI:Category("Visual")
 
 	local Esp = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
- 
--- config
+
     Esp.Players = false
     Esp.Boxes = false
     Esp.Names = true
@@ -289,7 +288,7 @@ if game.PlaceId == 9224601490 then
 					game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
 				end
 
-				if Move ~= nil then
+				if Move ~= nil and game.Players.LocalPlayer.Character:FindFirstChild(Move) then
 					game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[Move])
 	                
                     game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {})
