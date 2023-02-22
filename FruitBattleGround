@@ -297,6 +297,12 @@ if game.PlaceId == 9224601490 then
 					game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[Move])
 	                
                     game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {})
+
+					local Split = Move:split(" ")
+
+					for i,v in pairs(Split) do
+						game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, Split, {})
+					end
 				end
 	            
 	            if OldCFrame == nil then
