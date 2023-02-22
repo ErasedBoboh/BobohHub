@@ -276,24 +276,17 @@ if game.PlaceId == 9224601490 then
 	                Fruit = "Barrier"
 	            end
 
-				local First = true
-				local Second = true
-				local Third = true
-				local Fourth = true
-				local Fifth = true
-				local Sixth = true
-
-                if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) and First then
+				if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) and Second then
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) and Third then
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar[""].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) and Fourth then
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) and Fifth then
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) and Sixth then
+				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) then
 				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text
 				end
 
