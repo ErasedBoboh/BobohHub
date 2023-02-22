@@ -296,12 +296,10 @@ if game.PlaceId == 9224601490 then
 				if Move ~= nil and game.Players.LocalPlayer.Backpack:FindFirstChild(Move) then
 					game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[Move])
 	                
-                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {})
+                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, Move, {})
 
-					local Split = Move:split(" ")
-
-					for i,v in pairs(Split) do
-						game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, Split, {})
+					for i,v in pairs(Move:split(" ")) do
+						game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {})
 					end
 				end
 	            
