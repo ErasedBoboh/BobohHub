@@ -295,6 +295,8 @@ if game.PlaceId == 9224601490 then
 	                
                     game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, Move, {})
 
+					game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {})
+
 					for i,v in pairs(Move:split(" ")) do
 						game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {})
 					end
