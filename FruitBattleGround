@@ -232,6 +232,10 @@ if game.PlaceId == 9224601490 then
     Sector:Cheat("Button", "Fountain", function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(721, 721, -266)
     end)
+
+	Sector:Cheat("Button", "Marco Area", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(813, 1100, 625)
+    end)
 	
 	game:GetService("RunService").Heartbeat:Connect(function()
 	    if game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") then
