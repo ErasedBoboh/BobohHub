@@ -292,7 +292,7 @@ if game.PlaceId == 9224601490 then
 					
 					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text
 				
-				    wait(1)
+				    wait(2)
 
 					Second = true
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) and Third then
@@ -300,7 +300,7 @@ if game.PlaceId == 9224601490 then
 					
 					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar[""].Title.Text
 				
-			        wait(1)
+			        wait(3)
 
 					Third = true
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) and Fourth then
@@ -308,7 +308,7 @@ if game.PlaceId == 9224601490 then
 					
 					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
 				
-				    wait(1)
+				    wait(4)
 
 					Fourth = true
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) and Fifth then
@@ -316,7 +316,7 @@ if game.PlaceId == 9224601490 then
 					
 					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
 
-					wait(1)
+					wait(5)
 
 					Fifth = true
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) and Sixth then
@@ -324,7 +324,7 @@ if game.PlaceId == 9224601490 then
 					
 					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text
 
-					wait(1)
+					wait(6)
 
 					Sixth = true
 				end
