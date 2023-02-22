@@ -319,23 +319,23 @@ if game.PlaceId == 9224601490 then
 				if Random == 1 then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99999, 99999, 99999)
 				elseif Random == 2 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(98999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(98999, 98999, 98999)
 				elseif Random == 3 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97999, 97999, 97999)
 				elseif Random == 4 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(96999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(96999, 96999, 96999)
 				elseif Random == 5 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(95999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(95999, 95999, 95999)
 				elseif Random == 6 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(94999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(94999, 94999, 94999)
 				elseif Random == 7 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(93999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(93999, 93999, 93999)
 				elseif Random == 8 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(92999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(92999, 92999, 92999)
 				elseif Random == 9 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91999, 91999, 91999)
 				elseif Random == 10 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(90999, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(90999, 90999, 90999)
 				end
 	        elseif OldCFrame ~= nil then
 	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
