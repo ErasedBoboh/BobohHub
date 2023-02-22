@@ -280,53 +280,17 @@ if game.PlaceId == 9224601490 then
 				local Sixth = true
 
                 if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) and First then
-				    First = false
-					
-					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text
-				
-				    wait(5)
-
-					First = true
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) and Second then
-				    Second = false
-					
-					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text
-				
-				    wait(5)
-
-					Second = true
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) and Third then
-				    Third = false
-					
-					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar[""].Title.Text
-				
-			        wait(5)
-
-					Third = true
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar[""].Title.Text
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) and Fourth then
-				    Fourth = false
-					
-					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
-				
-				    wait(5)
-
-					Fourth = true
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) and Fifth then
-				    Fifth = false
-					
-					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
-
-					wait(5)
-
-					Fifth = true
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
 				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) and Sixth then
-				    Sixth = false
-					
-					Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text
-
-					wait(5)
-
-					Sixth = true
+				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text
 				end
 
 				if Move ~= nil and game.Players.LocalPlayer.Backpack:FindFirstChild(Move) then
@@ -344,23 +308,23 @@ if game.PlaceId == 9224601490 then
 				if Random == 1 then
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99999, 99999, 99999)
 				elseif Random == 2 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99899, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(98999, 99999, 99999)
 				elseif Random == 3 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99799, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(97999, 99999, 99999)
 				elseif Random == 4 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99699, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(96999, 99999, 99999)
 				elseif Random == 5 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99599, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(95999, 99999, 99999)
 				elseif Random == 6 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99499, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(94999, 99999, 99999)
 				elseif Random == 7 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99399, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(93999, 99999, 99999)
 				elseif Random == 8 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99299, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(92999, 99999, 99999)
 				elseif Random == 9 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99199, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(91999, 99999, 99999)
 				elseif Random == 10 then
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99099, 99999, 99999)
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(90999, 99999, 99999)
 				end
 	        elseif OldCFrame ~= nil then
 	            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OldCFrame
@@ -396,6 +360,22 @@ if game.PlaceId == 9224601490 then
             end
         end
 	end)
+
+	local GC = getconnections or get_signal_cons
+	if GC then
+		for i,v in pairs(GC(game.Players.LocalPlayer.Idled)) do
+			if v["Disable"] then
+				v["Disable"](v)
+			elseif v["Disconnect"] then
+				v["Disconnect"](v)
+			end
+		end
+	else
+		game.players.LocalPlayer.Idled:Connect(function()
+			game:GetService("VirtualUser"):CaptureController()
+			game:GetService("VirtualUser"):ClickButton2(Vector2.new())
+		end)
+	end
 
     game.CoreGui.FinityUI.Container.Topbar.TopbarTip.Text = "BoboHub | Boboh#1224"
 end
