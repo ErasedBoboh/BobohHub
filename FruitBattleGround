@@ -275,40 +275,18 @@ if game.PlaceId == 9224601490 then
 	            elseif string.find(game.Players.LocalPlayer.PlayerGui.UI.Spin.Topbar.TxT.Text, "Barrier") then
 	                Fruit = "Barrier"
 	            end
-
-				if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("1") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Requirement.Visible ~= true then
-				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["1"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("2") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Requirement.Visible ~= true then
-				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["2"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("3") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar["3"].Requirement.Visible ~= true then
-				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar[""].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("4") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Requirement.Visible ~= true then
-				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["4"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("5") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Requirement.Visible ~= true then
-				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["5"].Title.Text
-				elseif game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild("6") and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Requirement.Visible ~= true then
-				    Move = game.Players.LocalPlayer.PlayerGui.UI.Hotbar["6"].Title.Text
-				end
-
-				if Move ~= nil and game.Players.LocalPlayer.Backpack:FindFirstChild(Move) then
-					game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack[Move])
-
-					game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, Move, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
-	                
-                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
-
-					for i,v in pairs(Move:split(" ")) do
-						game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
-					end
-				elseif Move ~= nil and game.Players.LocalPlayer.Character:FindFirstChild(Move) then
-				    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, Move, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
-	                
-                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(Move, " ", ""), {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
-
-					for i,v in pairs(Move:split(" ")) do
-						game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
-					end
-				end
+	            
+	            local Random = math.random(1, 6)
+	            
+	            if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild(tostring(Random)) and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Requirement.Visible ~= true then
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
+	                    
+	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text, " ", ""), {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
+	                    
+	                for i,v in pairs(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text:split(" ")) do
+	                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
+	                end
+   	            end
 	            
 	            if OldCFrame == nil then
 	                OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
