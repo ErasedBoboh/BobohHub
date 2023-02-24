@@ -278,7 +278,7 @@ if game.PlaceId == 9224601490 then
 	            
 	            local Random = math.random(1, 6)
 	            
-	            if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild(tostring(Random)) and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Requirement.Visible ~= true then
+	            if game.Players.LocalPlayer.PlayerGui.UI.Hotbar:FindFirstChild(tostring(Random)) and not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text) and game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Requirement.Visible ~= true and game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text ~= "Sonic Stomp" or game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text ~= "Car" then
 	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
 	                    
 	                game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, string.gsub(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text, " ", ""), {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
