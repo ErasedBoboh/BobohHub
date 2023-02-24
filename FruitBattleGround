@@ -286,7 +286,11 @@ if game.PlaceId == 9224601490 then
 	                for i,v in pairs(game.Players.LocalPlayer.PlayerGui.UI.Hotbar[tostring(Random)].Title.Text:split(" ")) do
 	                    game:GetService("ReplicatedStorage"):WaitForChild("ReplicatorNoYield"):FireServer(Fruit, v, {["MouseRay"] = {["Direction"] = Vector3.new(0, 0, 0),["Origin"] = Vector3.new(0, 0, 0),["Position"] = Vector3.new(0, 0, 0)}})
 	                end
-   	            end
+	            end
+	            
+	            if game.Players.LocalPlayer.Backpack:FindFirstChild("Rage") then
+	                game.Players.LocalPlayer.Backpack.Rage.Value = 100
+	            end
 	            
 	            if OldCFrame == nil then
 	                OldCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
