@@ -1,26 +1,125 @@
 repeat wait() until game:IsLoaded()
 
 if game.PlaceId == 2809202155 then
-    local AutoLevel = false
-    local AutoStand = false
-    local KeepStands = {
-        WhiteSnake = false,
-        StarPlatinum = false,
-        TheWorld = false,
-        KillerQueen = false,
-        CrazyDiamond = false,
-        RedHotChiliPepper = false,
-        Anubis = false,
-        GoldExpierence = false,
-        KingCrimson = false,
-        SilverChariot = false,
-        HermitPurple = false,
-        PurpleHaze = false
-    }
-    local VampireBurn = false
+    local AutoFarm = false
+    local Burn = false
     local Codes = {""}
 
     local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/Loloresh/LXWare/main/Library"))()
+    
+    local Esp = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+    
+    Esp:Toggle(true)
+    Esp.Players = false
+    Esp.Tracers = false
+    Esp.Boxes = false
+    Esp.Names = true
+    
+    for i,v in pairs(game.Workspace["Item_Spawns"].Items:GetChildren()) do
+        for i,v in pairs(v:GetChildren()) do
+            if v:IsA("MeshPart") then
+                if v.MeshId == "rbxassetid://7124126253" then
+                    Esp:Add(v, {
+                        Name = "Gold Coin",
+                        IsEnabled = "GoldCoin",
+                        Color = Color3.fromRGB(255, 255, 0)
+                    })
+                elseif v.MeshId == "rbxassetid://5249254947" then
+                    Esp:Add(v, {
+                        Name = "Rib Cage",
+                        IsEnabled = "RibCage",
+                        Color = Color3.fromRGB(185, 183, 176)
+                    })
+                elseif v.MeshId == "rbxassetid://7218405255" then
+                    if v.BrickColor == "Persimmon" then
+                        Esp:Add(v, {
+                            Name = "Pure Rokakaka",
+                            IsEnabled = "Rokakaka",
+                            Color = Color3.fromRGB(255, 89, 89)
+                        })
+                    else
+                        Esp:Add(v, {
+                            Name = "Rokakaka",
+                            IsEnabled = "Rokakaka",
+                            Color = Color3.fromRGB(255, 0, 0)
+                        })
+                    end
+                elseif v.MeshId == "rbxassetid://7138936196" then
+                    Esp:Add(v, {
+                        Name = "Boxing Gloves",
+                        IsEnabled = "BoxingGloves",
+                        Color = Color3.fromRGB(255, 0, 0)
+                    })
+                elseif v.MeshId == "rbxassetid://7106081071" then
+                    Esp:Add(v, {
+                        Name = "Mysterious Arrow",
+                        IsEnabled = "MysteriousArrow",
+                        Color = Color3.fromRGB(139, 69, 19)
+                    })
+                else
+                    Esp:Add(v, {
+                        Name = "Unknow Item",
+                        IsEnabled = "Unknow",
+                        Color = Color3.fromRGB(0, 0, 0)
+                    })
+                end
+            end
+        end
+    end
+    
+    game.Workspace["Item_Spawns"].Items.ChildAdded:Connect(function(v)
+        wait(1)
+        
+        for i,v in pairs(v:GetChildren()) do
+            if v:IsA("MeshPart") then
+                if v.MeshId == "rbxassetid://7124126253" then
+                    Esp:Add(v, {
+                        Name = "Gold Coin",
+                        IsEnabled = "GoldCoin",
+                        Color = Color3.fromRGB(255, 255, 0)
+                    })
+                elseif v.MeshId == "rbxassetid://5249254947" then
+                    Esp:Add(v, {
+                        Name = "Rib Cage",
+                        IsEnabled = "RibCage",
+                        Color = Color3.fromRGB(185, 183, 176)
+                    })
+                elseif v.MeshId == "rbxassetid://7218405255" then
+                    if v.BrickColor == "Persimmon" then
+                        Esp:Add(v, {
+                            Name = "Pure Rokakaka",
+                            IsEnabled = "Rokakaka",
+                            Color = Color3.fromRGB(255, 89, 89)
+                        })
+                    else
+                        Esp:Add(v, {
+                            Name = "Rokakaka",
+                            IsEnabled = "Rokakaka",
+                            Color = Color3.fromRGB(255, 0, 0)
+                        })
+                    end
+                elseif v.MeshId == "rbxassetid://7138936196" then
+                    Esp:Add(v, {
+                        Name = "Boxing Gloves",
+                        IsEnabled = "BoxingGloves",
+                        Color = Color3.fromRGB(255, 0, 0)
+                    })
+                elseif v.MeshId == "rbxassetid://7106081071" then
+                    Esp:Add(v, {
+                        Name = "Mysterious Arrow",
+                        IsEnabled = "MysteriousArrow",
+                        Color = Color3.fromRGB(139, 69, 19)
+                    })
+                else
+                    Esp:Add(v, {
+                        Name = "Unknow Item",
+                        IsEnabled = "Unknow",
+                        Color = Color3.fromRGB(0, 0, 0)
+                    })
+                end
+            end
+        end
+    end)
 
     local UI = Loader.new(true)
     UI.ChangeToggleKey(Enum.KeyCode.RightControl)
@@ -33,33 +132,7 @@ if game.PlaceId == 2809202155 then
     	"Checkbox",
     	"Enabled",
 	    function(Value)
-            AutoLevel = Value
-	    end
-	)
-    
-    local Sector = Category:Sector("Stand")
-
-    Sector:Cheat(
-    	"Checkbox",
-    	"Enabled",
-	    function(Value)
-            AutoStand = Value
-	    end
-	)
-
-    Sector:Cheat(
-    	"Checkbox",
-    	"The World",
-	    function(Value)
-            KeepStands.TheWorld = Value
-	    end
-	)
-
-    Sector:Cheat(
-    	"Checkbox",
-    	"Star Platinum",
-	    function(Value)
-            KeepStands.StarPlatinum = Value
+	        AutoFarm = Value
 	    end
 	)
 	
@@ -75,6 +148,68 @@ if game.PlaceId == 2809202155 then
 
     local Sector = Category:Sector("Esp")
     
+    Sector:Cheat(
+    	"Checkbox",
+    	"Players",
+	    function(Value)
+	        Esp.Players = Value
+	    end
+	)
+    
+    Sector:Cheat(
+    	"Checkbox",
+    	"Mysterious Arrow",
+	    function(Value)
+	        Esp.MysteriousArrow = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Rokakaka",
+	    function(Value)
+	        Esp.Rokakaka = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Rib Cage",
+	    function(Value)
+	        Esp.RibCage = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Gold Coin",
+	    function(Value)
+	        Esp.GoldCoin = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Boxing Gloves",
+	    function(Value)
+	        Esp.BoxingGloves = Value
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Steel Ball",
+	    function(Value)
+	    end
+	)
+	
+	Sector:Cheat(
+    	"Checkbox",
+    	"Ancient Scroll",
+	    function(Value)
+	    end
+	)
+    
     local Category = UI:Category("Misc")
 
     local Sector = Category:Sector("Disable")
@@ -83,7 +218,7 @@ if game.PlaceId == 2809202155 then
     	"Checkbox",
     	"Vampire Burn",
 	    function(Value)
-            VampireBurn = Value
+	        Burn = Value
 	    end
 	)
 
@@ -168,7 +303,7 @@ if game.PlaceId == 2809202155 then
         local m = getnamecallmethod()
         local a = {...}
 
-        if tostring(s) == "RemoteEvent" and m == "FireServer" and a[1] == "VampireBurn" and VampireBurn then
+        if tostring(s) == "RemoteEvent" and m == "FireServer" and a[1] == "VampireBurn" and Burn then
             return
         end
 
